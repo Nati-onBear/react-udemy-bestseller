@@ -12,6 +12,17 @@ class App extends Component {
     ]
   }
 
+  switchNameHandler = () => {
+    console.log('Clicked')
+    this.setState({ 
+      persons: [
+        { name: 'Barry Allen', age: 22, hobby: null },
+        { name: 'Hung', age: 18, hobby: 'skating' },
+        { name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
+      ],
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,7 +30,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <h1>Hello, I'm learning React again!</h1>
-        <button>Switch Name!</button>
+        <button onClick={this.switchNameHandler}>Switch Name!</button>
         {this.state.persons.map(person => 
           <Person name={person.name} age={person.age} hobby={person.hobby}/>
         )}
