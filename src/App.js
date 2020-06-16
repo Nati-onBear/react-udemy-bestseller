@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Person from './components/Person/Person';
 
 function App() {
   return (
@@ -9,8 +10,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <h1>Hello, I'm learning React again!</h1>
-      <p>Only one root element!</p>
-      <p>No class for HTML-ish code here!</p>
+      <Person/>
     </div>
   );
   // const firstChild = React.createElement('header', {className: 'App-header'}, 
