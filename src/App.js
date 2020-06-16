@@ -10,9 +10,9 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <h1>Hello, I'm learning React again!</h1>
-      <Person name='Bear' age='21' hobby='gaming' />
-      <Person name='Hung' age='18' hobby='skating' />
-      <Person name='Thuy' age='20' hobby='ignoring Hung' />
+      <Person name='Bear' age='21' />
+      <Person name='Hung' age='18'>& I love skating</Person>
+      <Person name='Thuy' age='20'>& I love ignoring Hung</Person>
     </div>
   );
   // const firstChild = React.createElement('header', {className: 'App-header'}, 
