@@ -12,12 +12,21 @@ class App extends Component {
     ]
   }
 
-  switchNameHandler = () => {
-    console.log('Clicked')
+  switchNameHandler = newName => {
     this.setState({ 
       persons: [
-        { name: 'Barry Allen', age: 22, hobby: null },
+        { name: newName, age: 22, hobby: null },
         { name: 'Hung', age: 18, hobby: 'skating' },
+        { name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
+      ],
+    })
+  }
+
+  changedNameHandler = event => {
+    this.setState({ 
+      persons: [
+        { name: 'Bear', age: 22, hobby: null },
+        { name: event.target.value, age: 18, hobby: 'skating' },
         { name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
       ],
     })
@@ -30,9 +39,15 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <h1>Hello, I'm learning React again!</h1>
-        <button onClick={this.switchNameHandler}>Switch Name!</button>
+        <button onClick={() => this.switchNameHandler('Barry Allen!!')}>Switch Name!</button>
         {this.state.persons.map(person => 
-          <Person name={person.name} age={person.age} hobby={person.hobby}/>
+          <Person 
+            name={person.name} 
+            age={person.age} 
+            hobby={person.hobby}
+            click={this.state.persons[0] ? this.switchNameHandler.bind(this, 'Beary!!!') : null}
+            changed={this.state.persons[1] === person ? this.changedNameHandler : null}
+          />
         )}
       </div>
     );
