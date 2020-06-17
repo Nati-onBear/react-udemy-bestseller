@@ -33,13 +33,22 @@ class App extends Component {
   }
 
   render() {
+    const buttonStyle = {
+      font: 'inherit',
+      padding: '8px',
+      backgroundColor: 'white',
+      border: '2px solid lightgreen',
+      borderRadius: '5px',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <h1>Hello, I'm learning React again!</h1>
-        <button onClick={() => this.switchNameHandler('Barry Allen!!')}>Switch Name!</button>
+        <button style={buttonStyle} onClick={() => this.switchNameHandler('Barry Allen!!')}>Switch Name!</button>
         {this.state.persons.map(person => 
           <Person 
             name={person.name} 
