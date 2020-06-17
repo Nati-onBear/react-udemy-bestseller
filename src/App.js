@@ -9,7 +9,8 @@ class App extends Component {
       { name: 'Bear', age: 22, hobby: null },
       { name: 'Hung', age: 18, hobby: 'skating' },
       { name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
-    ]
+    ],
+    showPersonsStyle: true
   }
 
   switchNameHandler = newName => {
@@ -32,6 +33,12 @@ class App extends Component {
     })
   }
 
+  toggleVisibility = () => {
+    this.state.showPersonsStyle === true 
+      ? this.setState({ showPersonsStyle: false })
+      : this.setState({ showPersonsStyle: true })
+  }
+
   render() {
     const buttonStyle = {
       font: 'inherit',
@@ -48,16 +55,19 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <h1>Hello, I'm learning React again!</h1>
-        <button style={buttonStyle} onClick={() => this.switchNameHandler('Barry Allen!!')}>Switch Name!</button>
-        {this.state.persons.map(person => 
-          <Person 
-            name={person.name} 
-            age={person.age} 
-            hobby={person.hobby}
-            click={this.state.persons[0] ? this.switchNameHandler.bind(this, 'Beary!!!') : null}
-            changed={this.state.persons[1] === person ? this.changedNameHandler : null}
-          />
-        )}
+        <button style={buttonStyle} onClick={this.toggleVisibility}>Toggle Persons' Visibility!</button>
+        <div>
+          {this.state.showPersonsStyle ? this.state.persons.map(person => 
+            <Person 
+              name={person.name} 
+              age={person.age} 
+              hobby={person.hobby}
+              click={this.state.persons[0] ? this.switchNameHandler.bind(this, 'Beary!!!') : null}
+              changed={this.state.persons[1] === person ? this.changedNameHandler : null}
+            />
+          ) : null}
+        </div>
+        
       </div>
     );
     // const firstChild = React.createElement('header', {className: 'App-header'}, 
