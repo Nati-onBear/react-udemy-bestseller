@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './components/Person/Person';
+import Validation from './components/Validation';
+import Char from './components/Char';
 
 class App extends Component {
   state = {
@@ -10,7 +12,9 @@ class App extends Component {
       { id: 'A2', name: 'Hung', age: 18, hobby: 'skating' },
       { id: 'B3', name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
     ],
-    showPersons: false
+    showPersons: false,
+    pLength: 0,
+    pTexts: []
   }
 
   deletePersonHandler = index => {
@@ -38,6 +42,17 @@ class App extends Component {
       : this.setState({ showPersons: true })
   }
 
+  onInputChange = (event) => {
+    let pTexts = event.target.value.split('')
+    this.setState({ pLength: event.target.value.length, pTexts: pTexts })
+  }
+
+  onCharClick = (index) => {
+    let pTexts = [...this.state.pTexts]
+    pTexts.splice(index, 1)
+    this.setState({ pTexts: pTexts })
+  }
+
   render() {
     const buttonStyle = {
       font: 'inherit',
@@ -63,6 +78,14 @@ class App extends Component {
         )
       ) 
     }
+    
+    let pTexts = this.state.pTexts.map((text, index) =>
+      <Char 
+        key={index}
+        letter={text}
+        click={() => this.onCharClick(index)}
+      />
+    )
 
     return (
       <div className="App">
@@ -70,11 +93,17 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <h1>Hello, I'm learning React again!</h1>
+        <h3>Section 4</h3>
         <button style={buttonStyle} onClick={this.toggleVisibility}>Toggle Persons' Visibility!</button>
         <div>
           {persons}
         </div>
-        
+        <h3>Assignment 2</h3>
+        <div>
+          <input type='textarea' value={this.state.pTexts.join('')} onChange={this.onInputChange}/>
+          <Validation length={this.state.pLength}/>
+          {pTexts}
+        </div>
       </div>
     );
   }
