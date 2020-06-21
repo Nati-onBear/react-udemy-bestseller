@@ -6,28 +6,30 @@ import Person from './components/Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Bear', age: 22, hobby: null },
-      { name: 'Hung', age: 18, hobby: 'skating' },
-      { name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
+      { id: 'A1', name: 'Bear', age: 22, hobby: null },
+      { id: 'A2', name: 'Hung', age: 18, hobby: 'skating' },
+      { id: 'B3', name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
     ],
     showPersons: false
   }
 
-  deletePersonHandler = (index) => {
-    // let persons = this.state.persons.slice() // or const?
+  deletePersonHandler = index => {
     let persons = [...this.state.persons]
     persons.splice(index, 1)
     this.setState({ persons: persons })  
   }
 
-  changedNameHandler = event => {
-    this.setState({ 
-      persons: [
-        { name: 'Bear', age: 22, hobby: null },
-        { name: event.target.value, age: 18, hobby: 'skating' },
-        { name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
-      ],
-    })
+  changedNameHandler = (event, index) => {
+    // To change the name of the person
+    const originalPersons = [...this.state.persons]
+    //let changedPerson = originalPersons.splice(index, 1).shift()
+    let changedPerson = originalPersons[index]
+    changedPerson.name = event.target.value
+    // To get the updated state
+    let updatedPersons = [...this.state.persons]
+    //updatedPersons.splice(index, 1, changedPerson)
+    updatedPersons[index] = changedPerson
+    this.setState({ persons: updatedPersons })
   }
 
   toggleVisibility = () => {
@@ -51,11 +53,12 @@ class App extends Component {
       persons = (
         this.state.persons.map((person, index) => 
           <Person 
+            key={person.id}
             name={person.name} 
             age={person.age} 
             hobby={person.hobby}
             click={() => this.deletePersonHandler(index)}
-            changed={this.state.persons[1] === person ? this.changedNameHandler : null}
+            changed={(event) => this.changedNameHandler(event, index)}
           />
         )
       ) 
@@ -74,10 +77,6 @@ class App extends Component {
         
       </div>
     );
-    // const firstChild = React.createElement('header', {className: 'App-header'}, 
-    //   React.createElement('img', {src:logo, className:'App-logo', alt:'logo'}))
-    // const secondChild = React.createElement('h1', null, 'Hello, I\'m learning React again!')
-    // return React.createElement('div', {className:'App'}, firstChild, secondChild )
   }
 }
 
