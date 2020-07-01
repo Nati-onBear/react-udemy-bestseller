@@ -1,5 +1,5 @@
 .Person {
-  width: 20%;
+  width: 80%;
   height: auto;
   margin: 10px auto;
   padding: 10px;
@@ -7,3 +7,9 @@
   border-radius: 5px;
   box-shadow: 0 2px 3px #ccc;
 }
+
+/* @media (min-width: 500px) {
+  .Person {
+    width: 450px;
+  }
+} */

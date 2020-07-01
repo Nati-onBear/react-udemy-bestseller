@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium, { StyleRoot } from 'radium';
 import logo from './logo.svg';
 import './App.css';
 import Person from './components/Person/Person';
@@ -64,11 +65,15 @@ class App extends Component {
         color: 'white',
         border: '2px solid lightgray',
         borderRadius: '5px',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        ':hover': {
+          backgroundColor: 'lightgreen',
+          color: 'black'
+        }
       },
       resetStyle: {
         font: 'inherit',
-        marginLeft: '10px',
+        margin: '10px',
         padding: '8px',
         backgroundColor: '#13EBA2',
         color: 'white',
@@ -92,7 +97,11 @@ class App extends Component {
           />
         )
       )
-      style.toggleStyle.backgroundColor = '#F1202B'
+      style.toggleStyle.backgroundColor = '#FA2020'
+      style.toggleStyle[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
     const classes = []
@@ -100,18 +109,20 @@ class App extends Component {
     this.state.persons.length <= 1 && classes.push('bold')
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        <h1>Hello, I'm learning React again!</h1>
-        <p className={classes.join(' ')}>I hope this course will help me @@</p>
-        <button style={style.toggleStyle} onClick={this.toggleVisibility}>Toggle People's Visibility!</button>
-        <button style={style.resetStyle} onClick={this.resetState}>Reset People</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+          </header>
+          <h1>Hello, I'm learning React again!</h1>
+          <p className={classes.join(' ')}>I hope this course will help me @@</p>
+          <button style={style.toggleStyle} onClick={this.toggleVisibility}>Toggle People's Visibility!</button>
+          <button style={style.resetStyle} onClick={this.resetState}>Reset People</button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
