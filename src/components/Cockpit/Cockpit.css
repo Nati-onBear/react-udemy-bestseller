@@ -1,0 +1,35 @@
+.red {
+  color: #f7442dda;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.basic-button {
+  font: inherit;
+  margin: 10px;
+  padding: 8px;
+  color: white;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.basic-color {
+  background-color: #13EBA2;
+}
+
+.basic-color:hover {
+  background-color: lightgreen;
+  color: black;
+}
+
+.hiding-color {
+  background-color: #FD5050;
+}
+
+.hiding-color:hover {
+  background-color: salmon;
+  color: black;
+}
