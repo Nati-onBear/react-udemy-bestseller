@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
 import logo from './logo.svg';
 import './App.css';
 import Person from './components/Person/Person';
 
-
+const ResetButton = styled.button`
+  font: inherit;
+  margin: 10px;
+  padding: 8px;
+  background-color: #13EBA2;
+  color: white;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: lightgreen;
+    color: black;
+  }
+`
 
 class App extends Component {
   state = {
@@ -70,16 +84,6 @@ class App extends Component {
           backgroundColor: 'lightgreen',
           color: 'black'
         }
-      },
-      resetStyle: {
-        font: 'inherit',
-        margin: '10px',
-        padding: '8px',
-        backgroundColor: '#13EBA2',
-        color: 'white',
-        border: '2px solid lightgray',
-        borderRadius: '5px',
-        cursor: 'pointer'
       }
     }
 
@@ -117,7 +121,7 @@ class App extends Component {
           <h1>Hello, I'm learning React again!</h1>
           <p className={classes.join(' ')}>I hope this course will help me @@</p>
           <button style={style.toggleStyle} onClick={this.toggleVisibility}>Toggle People's Visibility!</button>
-          <button style={style.resetStyle} onClick={this.resetState}>Reset People</button>
+          <ResetButton onClick={this.resetState}>Reset People</ResetButton>
           {persons}
         </div>
       </StyleRoot>
