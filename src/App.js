@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import Person from './components/Person/Person';
 
+
+
 class App extends Component {
   state = {
     persons: [
@@ -11,6 +13,10 @@ class App extends Component {
       { id: 'B3', name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
     ],
     showPersons: false
+  }
+
+  componentDidMount = () => {
+    this.setState({ showPersons: true })
   }
 
   deletePersonHandler = index => {
@@ -38,14 +44,38 @@ class App extends Component {
       : this.setState({ showPersons: true })
   }
 
+  resetState = () => {
+    this.setState({
+      persons: [
+        { id: 'A1', name: 'Bear', age: 22, hobby: null },
+        { id: 'A2', name: 'Hung', age: 18, hobby: 'skating' },
+        { id: 'B3', name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
+      ],
+      showPersons: true
+    })
+  }
+
   render() {
-    const buttonStyle = {
-      font: 'inherit',
-      padding: '8px',
-      backgroundColor: 'white',
-      border: '2px solid lightgreen',
-      borderRadius: '5px',
-      cursor: 'pointer'
+    const style = {
+      toggleStyle: {
+        font: 'inherit',
+        padding: '8px',
+        backgroundColor: '#13EBA2',
+        color: 'white',
+        border: '2px solid lightgray',
+        borderRadius: '5px',
+        cursor: 'pointer'
+      },
+      resetStyle: {
+        font: 'inherit',
+        marginLeft: '10px',
+        padding: '8px',
+        backgroundColor: '#13EBA2',
+        color: 'white',
+        border: '2px solid lightgray',
+        borderRadius: '5px',
+        cursor: 'pointer'
+      }
     }
 
     let persons = null
@@ -61,8 +91,13 @@ class App extends Component {
             changed={(event) => this.changedNameHandler(event, index)}
           />
         )
-      ) 
+      )
+      style.toggleStyle.backgroundColor = '#F1202B'
     }
+
+    const classes = []
+    this.state.persons.length <= 2 && classes.push('red')
+    this.state.persons.length <= 1 && classes.push('bold')
 
     return (
       <div className="App">
@@ -70,11 +105,10 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <h1>Hello, I'm learning React again!</h1>
-        <button style={buttonStyle} onClick={this.toggleVisibility}>Toggle Persons' Visibility!</button>
-        <div>
-          {persons}
-        </div>
-        
+        <p className={classes.join(' ')}>I hope this course will help me @@</p>
+        <button style={style.toggleStyle} onClick={this.toggleVisibility}>Toggle People's Visibility!</button>
+        <button style={style.resetStyle} onClick={this.resetState}>Reset People</button>
+        {persons}
       </div>
     );
   }
