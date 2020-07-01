@@ -13,7 +13,7 @@ const Cockpit = (props) => {
 
   return (
     <div>
-      <h1>Hello, I'm learning React again!</h1>
+      <h1>{props.title}</h1>
       <p className={pClasses.join(' ')}>I hope this course will help me @@</p>
       <button className={toggleClasses.join(' ')} onClick={toggleVisibility}>Toggle People's Visibility!</button>
       <button className='basic-button basic-color' onClick={resetState}>Reset People</button>
