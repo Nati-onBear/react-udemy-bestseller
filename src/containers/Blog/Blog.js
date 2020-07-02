@@ -11,10 +11,16 @@ class Blog extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts?userId=1')
+        axios.get('https://jsonplaceholder.typicode.com/posts')
             .then(res => {
-                this.setState({ posts: res.data })
-                // console.log(res)
+                const posts = res.data.slice(8, 12)
+                const updatedPosts = posts.map(post => {
+                    return {
+                        ...post,
+                        author: post.userId === 1?'Barry Bear':'Quoc Hung'
+                    }    
+                })
+                this.setState({ posts: updatedPosts })
             })
     }
 
