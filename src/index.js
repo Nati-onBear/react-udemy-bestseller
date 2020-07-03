@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-axios.interceptors.request.use(
+let interceptor = axios.interceptors.request.use(
   req => {
     console.log(req)
     // to edit req config (add header,...)
@@ -16,6 +16,8 @@ axios.interceptors.request.use(
     return Promise.reject(err)
   }  
 )
+
+// axios.interceptors.request.eject(interceptor)
 
 axios.interceptors.response.use(
   res => {
