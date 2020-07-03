@@ -8,7 +8,8 @@ import './Blog.css';
 class Blog extends Component {
     state = {
         posts: [],
-        selectedPostId: null
+        selectedPostId: null,
+        error: null
     }
 
     componentDidMount() {
@@ -22,6 +23,9 @@ class Blog extends Component {
                     }    
                 })
                 this.setState({ posts: updatedPosts })
+            })
+            .catch(error => {
+                this.setState({ error: error.toString() })
             })
     }
 
@@ -37,10 +41,10 @@ class Blog extends Component {
         return (
             <div>
                 <section className="Posts">
-                    {posts}
+                    {this.state.error ? <h1>{this.state.error}</h1> : posts}
                 </section>
                 <section>
-                    <FullPost id={this.state.selectedPostId} />
+                    {this.state.error === null ?? <FullPost id={this.state.selectedPostId} />}
                 </section>
                 <section>
                     <NewPost />
