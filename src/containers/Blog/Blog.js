@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import axios from '../../axios';
-
+import logo from '../../assets/logo.svg';
 import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
@@ -42,11 +42,20 @@ class Blog extends Component {
 
         return (
             <div>
-                <section className="Posts">
-                    {this.state.error ? <h1>{this.state.error}</h1> : posts}
-                </section>
+                <header className="App-header">
+                    <nav>
+                        <ul>
+                            <li><img src={logo} className="App-logo" alt="logo" /></li>
+                            <li><a href='/'>Home</a></li>
+                            <li><a href='/new-post'>New Post</a></li>
+                        </ul>
+                    </nav>
+                </header>
                 <section>
                     {this.state.error === null && <FullPost id={this.state.selectedPostId} />}
+                </section>
+                <section className="Posts">
+                    {this.state.error ? <h1>{this.state.error}</h1> : posts}
                 </section>
                 <section>
                     <NewPost />

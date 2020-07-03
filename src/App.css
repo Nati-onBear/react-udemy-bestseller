@@ -21,6 +21,27 @@
   color: white;
 }
 
+.App-header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.App-header li {
+  display: inline-block;
+  margin: 5px;
+}
+
+.App-header a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.App-header a:hover,
+.App-header a:active {
+  color: #61dafb
+}
+
 .App-link {
   color: #61dafb;
 }
