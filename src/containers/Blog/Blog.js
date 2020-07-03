@@ -13,7 +13,7 @@ class Blog extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('/posts')
             .then(res => {
                 const posts = res.data.slice(96, 105)
                 const updatedPosts = posts.map(post => {
@@ -44,7 +44,7 @@ class Blog extends Component {
                     {this.state.error ? <h1>{this.state.error}</h1> : posts}
                 </section>
                 <section>
-                    {this.state.error === null ?? <FullPost id={this.state.selectedPostId} />}
+                    {this.state.error === null && <FullPost id={this.state.selectedPostId} />}
                 </section>
                 <section>
                     <NewPost />

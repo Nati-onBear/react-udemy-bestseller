@@ -5,6 +5,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com'
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+
 let interceptor = axios.interceptors.request.use(
   req => {
     console.log(req)
@@ -16,8 +20,7 @@ let interceptor = axios.interceptors.request.use(
     return Promise.reject(err)
   }  
 )
-
-// axios.interceptors.request.eject(interceptor)
+axios.interceptors.request.eject(interceptor)
 
 axios.interceptors.response.use(
   res => {
