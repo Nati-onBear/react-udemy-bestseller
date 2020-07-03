@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import './Post.css';
 
 const post = (props) => {
-    console.log(props)
+    // console.log(props)
     const { title, author } = props.data
     return (
         <article className="Post" onClick={props.onClick}>
