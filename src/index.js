@@ -11,12 +11,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 let interceptor = axios.interceptors.request.use(
   req => {
-    console.log(req)
+    // console.log(req)
     // to edit req config (add header,...)
     return req
   },
   err => {
-    console.log(err)
+    // console.log(err)
     return Promise.reject(err)
   }  
 )
@@ -24,12 +24,11 @@ axios.interceptors.request.eject(interceptor)
 
 axios.interceptors.response.use(
   res => {
-    console.log(res)
-    // to edit res config (add header,...)
+    // console.log(res)
     return res
   },
   err => {
-    console.log(err)
+    // console.log(err)
     return Promise.reject(err)
   }
 )

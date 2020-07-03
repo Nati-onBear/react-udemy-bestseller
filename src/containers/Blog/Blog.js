@@ -23,8 +23,8 @@ class Blog extends Component {
                     </nav>
                 </header>
                 
-                <Route exact path='/'><Posts /></Route>
-                <Route path='/new-post'><NewPost /></Route>
+                <Route exact path='/' component={Posts} />
+                <Route path='/new-post' component={NewPost}/>
             </div>
         );
     }

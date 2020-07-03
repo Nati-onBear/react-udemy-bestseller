@@ -12,24 +12,25 @@ export default class Posts extends Component {
   }
 
   componentDidMount() {
-      Axios.get('/posts')
-          .then(res => {
-              const posts = res.data.slice(90, 105)
-              const updatedPosts = posts.map(post => {
-                  return {
-                      ...post,
-                      author: post.userId === 1?'Barry Bear':'Quoc Hung'
-                  }    
-              })
-              this.setState({ posts: updatedPosts })
-          })
-          .catch(error => {
-              this.setState({ error: error.toString() })
-          })
+    console.log(this.props)
+    Axios.get('/posts')
+      .then(res => {
+        const posts = res.data.slice(90, 105)
+        const updatedPosts = posts.map(post => {
+          return {
+            ...post,
+            author: post.userId === 1?'Barry Bear':'Quoc Hung'
+          }    
+        })
+        this.setState({ posts: updatedPosts })
+      })
+      .catch(error => {
+        this.setState({ error: error.toString() })
+      })
   }
 
   onPostClick = (id) => {
-      this.setState({ selectedPostId: id })
+    this.setState({ selectedPostId: id })
   }
 
   render() {
