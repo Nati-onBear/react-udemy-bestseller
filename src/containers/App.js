@@ -8,12 +8,12 @@ import Cockpit from '../components/Cockpit/Cockpit';
 const initialState = [
   { id: 'A1', name: 'Bear', age: 22, hobby: null },
   { id: 'A2', name: 'Hung', age: 18, hobby: 'skating' },
-  { id: 'B3', name: 'Thuy', age: 20, hobby: 'ignoring Hung' },
+  { id: 'B3', name: 'Thuy', age: 20, hobby: 'ignoring Hung' }
 ]
 
 class App extends Component {
   state = {
-    persons: [...initialState],
+    persons: Array.from(initialState),
     showPersons: false
   }
 
