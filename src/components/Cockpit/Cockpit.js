@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Cockpit.css'
 
 const Cockpit = (props) => {
   const { personsNumber, showPersons, toggleVisibility, resetState } = props
+
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect')
+    // HTTP req...
+    setTimeout(() => {
+      alert('Saved data to cloud!')
+    }, 1000)
+  }, [])
 
   const toggleClasses = ['basic-button']
   showPersons ? toggleClasses.push('basic-color') : toggleClasses.push('hiding-color')

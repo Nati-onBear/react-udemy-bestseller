@@ -13,7 +13,7 @@ const initialState = [
 
 class App extends Component {
   state = {
-    persons: initialState,
+    persons: [...initialState],
     showPersons: false
   }
 
@@ -24,7 +24,7 @@ class App extends Component {
   deletePersonHandler = index => {
     let persons = [...this.state.persons]
     persons.splice(index, 1)
-    this.setState({ persons: persons })  
+    this.setState({ persons: [...persons] })  
   }
 
   changedNameHandler = (event, index) => {
@@ -37,7 +37,7 @@ class App extends Component {
     let updatedPersons = [...this.state.persons]
     //updatedPersons.splice(index, 1, changedPerson)
     updatedPersons[index] = changedPerson
-    this.setState({ persons: updatedPersons })
+    this.setState({ persons: [...updatedPersons] })
   }
 
   toggleVisibility = () => {
@@ -48,7 +48,7 @@ class App extends Component {
 
   resetState = () => {
     this.setState({
-      persons: initialState,
+      persons: [...initialState],
       showPersons: true
     })
   }
