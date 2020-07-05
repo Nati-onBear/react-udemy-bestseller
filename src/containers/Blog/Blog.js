@@ -17,10 +17,6 @@ class Blog extends Component {
                                 exact 
                                 to='/' 
                                 activeClassName='the-active'
-                                activeStyle={{
-                                    color:'#61dafb',
-                                    textDecoration:'underline'
-                                }}
                             >Home</NavLink></li>
                             <li><NavLink 
                                 to={{
@@ -28,10 +24,7 @@ class Blog extends Component {
                                     hash: '#submit',
                                     search: '?quick-submit=true'
                                 }}
-                                activeStyle={{
-                                    color:'#61dafb',
-                                    textDecoration:'underline'
-                                }}
+                                activeClassName='the-active'
                             >New Post</NavLink></li>
                         </ul>
                     </nav>
