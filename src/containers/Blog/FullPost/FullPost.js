@@ -28,7 +28,7 @@ class FullPost extends Component {
     }
 
     render () {
-        let post = <h3>Please select a Post!</h3>
+        let post = <h3>Loading!</h3>
         Object.keys(this.state.post).length > 1 && (post = (
             <div className="FullPost">
                 <h1>{this.state.post.title}</h1>

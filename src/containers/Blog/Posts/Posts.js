@@ -29,18 +29,18 @@ export default class Posts extends Component {
   }
 
   onPostClick = (id) => {
-    this.setState({ selectedPostId: id })
+    this.props.history.push({ pathname: '/post/' + id })
   }
 
   render() {
     const posts = this.state.posts.map(post => 
-      <Link
-        to={'/post/' + post.id}
-        key={post.id}
-        style={{textDecoration:'none'}}
-      >
-        <Post data={post} onClick={() => this.onPostClick(post.id)}/>    
-      </Link>
+      // <Link
+      //   to={'/post/' + post.id}
+      //   key={post.id}
+      //   style={{textDecoration:'none'}}
+      // >
+      <Post key={post.id} data={post} onClick={() => this.onPostClick(post.id)}/>    
+      // </Link>
     )
     return (
       <div>
