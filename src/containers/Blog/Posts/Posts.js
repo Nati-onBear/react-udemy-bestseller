@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import './Posts.css'
 import Post from '../../../components/Post/Post'
@@ -29,7 +28,7 @@ export default class Posts extends Component {
   }
 
   onPostClick = (id) => {
-    this.props.history.push({ pathname: '/post/' + id })
+    this.props.history.push({ pathname: '/posts/' + id })
   }
 
   render() {

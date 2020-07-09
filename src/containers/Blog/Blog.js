@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import './Blog.css';
 import Posts from './Posts/Posts';
@@ -34,10 +34,11 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route exact path='/' component={Posts} />
+                <Route exact path='/posts' component={Posts} />
                 <Switch>
                     <Route path='/new' component={NewPost}/>
-                    <Route exact path='/post/:postId' component={FullPost} />
+                    <Route exact path='/posts/:postId' component={FullPost} />
+                    <Redirect from='/' to='/posts'/>
                 </Switch>
                 
             </div>

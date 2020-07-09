@@ -22,8 +22,12 @@ class FullPost extends Component {
 
     deletePostHandler = () => {
         axios.delete('/posts/' + this.state.post.id)
-            .then(() => { 
-                this.setState({ post: { id: null } }) 
+            // .then(() => { 
+            //     this.setState({ post: { id: null } }) 
+            // })
+            .then(() => {
+                alert('Post ' + this.state.post.id + ' has been deleted!')
+                this.props.history.push({ pathname: '/' })
             })
     }
 
