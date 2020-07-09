@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import './Posts.css'
 import Post from '../../../components/Post/Post'
-import FullPost from '../FullPost/FullPost'
 
 export default class Posts extends Component {
   state = {
@@ -34,13 +34,16 @@ export default class Posts extends Component {
 
   render() {
     const posts = this.state.posts.map(post => 
-      <Post key={post.id} data={post} onClick={() => this.onPostClick(post.id)}/>    
+      <Link
+        to={'/post/' + post.id}
+        key={post.id}
+        style={{textDecoration:'none'}}
+      >
+        <Post data={post} onClick={() => this.onPostClick(post.id)}/>    
+      </Link>
     )
     return (
       <div>
-        <section>
-          {this.state.error === null && <FullPost id={this.state.selectedPostId} />}
-        </section>
         <section className="Posts">
           {
             this.state.error 

@@ -4,6 +4,7 @@ import logo from '../../assets/logo.svg';
 import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
     render () {
@@ -13,25 +14,30 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li><img src={logo} className="App-logo" alt="logo" /></li>
-                            <li><NavLink 
-                                exact 
-                                to='/' 
-                                activeClassName='the-active'
-                            >Home</NavLink></li>
-                            <li><NavLink 
-                                to={{
-                                    pathname: '/new',
-                                    hash: '#submit',
-                                    search: '?quick-submit=true'
-                                }}
-                                activeClassName='the-active'
-                            >New Post</NavLink></li>
+                            <li>
+                                <NavLink 
+                                    exact 
+                                    to='/' 
+                                    activeClassName='the-active'
+                                >Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink 
+                                    to={{
+                                        pathname: '/new',
+                                        hash: '#submit',
+                                        search: '?quick-submit=true'
+                                    }}
+                                    activeClassName='the-active'
+                                >New Post</NavLink>
+                            </li>
                         </ul>
                     </nav>
                 </header>
                 
                 <Route exact path='/' component={Posts} />
                 <Route path='/new' component={NewPost}/>
+                <Route exact path='/post/:postId' component={FullPost} />
             </div>
         );
     }

@@ -16,7 +16,11 @@
 }
 
 .Edit button {
-    border: none;
+    margin: 5px;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: medium;
     background-color: transparent;
     cursor: pointer;
     outline: none;
@@ -35,4 +39,20 @@
 .Edit button.Delete:hover,
 .Edit button.Delete:active {
     color: darkred;
+}
+
+.Edit a.active {
+    margin: 5px;
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    color: #1fa12a;
+}
+
+.Edit a:hover {
+    color: darkgreen;
 }
