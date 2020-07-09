@@ -3,8 +3,13 @@ import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import './Blog.css';
 import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
+// import NewPost from './NewPost/NewPost';
 import FullPost from './FullPost/FullPost';
+import asynchComponent from '../../hoc/asynchComponent';
+
+const asynchNewPost = asynchComponent(() => {
+    return import('./NewPost/NewPost')
+})
 
 class Blog extends Component {
     state = {
@@ -39,7 +44,7 @@ class Blog extends Component {
                 </header>
                 <Switch>
                     <Route exact path='/posts' component={Posts} />
-                    {this.state.isAuth && <Route path='/new' component={NewPost}/>}
+                    {this.state.isAuth && <Route path='/new' component={asynchNewPost}/>}
                     <Route exact path='/posts/:postId' component={FullPost} />
                     <Redirect exact from='/' to='/posts'/>
                 </Switch>
