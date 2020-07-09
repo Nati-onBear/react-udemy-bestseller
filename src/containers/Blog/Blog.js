@@ -11,6 +11,8 @@ const asynchNewPost = asynchComponent(() => {
     return import('./NewPost/NewPost')
 })
 
+// const asynchFullPost = React.lazy(() => import('./FullPost/FullPost'))
+
 class Blog extends Component {
     state = {
         isAuth: true
@@ -47,8 +49,8 @@ class Blog extends Component {
                     {this.state.isAuth && <Route path='/new' component={asynchNewPost}/>}
                     <Route exact path='/posts/:postId' component={FullPost} />
                     <Redirect exact from='/' to='/posts'/>
+                    <Route render={() => <h1>404 Not Found!</h1>}/>
                 </Switch>
-                <Route render={() => <h1>404 Not Found!</h1>}/>
             </div>
         );
     }
