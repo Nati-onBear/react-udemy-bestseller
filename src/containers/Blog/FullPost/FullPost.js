@@ -27,7 +27,7 @@ class FullPost extends Component {
             // })
             .then(() => {
                 alert('Post ' + this.state.post.id + ' has been deleted!')
-                this.props.history.push({ pathname: '/' })
+                this.props.history.push({ pathname: '/posts' })
             })
     }
 

@@ -41,9 +41,9 @@ class Blog extends Component {
                     <Route exact path='/posts' component={Posts} />
                     {this.state.isAuth && <Route path='/new' component={NewPost}/>}
                     <Route exact path='/posts/:postId' component={FullPost} />
-                    <Redirect from='/' to='/posts'/>
+                    <Redirect exact from='/' to='/posts'/>
                 </Switch>
-                
+                <Route render={() => <h1>404 Not Found!</h1>}/>
             </div>
         );
     }
