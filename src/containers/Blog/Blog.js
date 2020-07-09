@@ -7,6 +7,9 @@ import NewPost from './NewPost/NewPost';
 import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
+    state = {
+        isAuth: true
+    }
     render () {
         return (
             <div>
@@ -15,9 +18,9 @@ class Blog extends Component {
                         <ul>
                             <li><img src={logo} className="App-logo" alt="logo" /></li>
                             <li>
-                                <NavLink 
-                                    exact 
-                                    to='/' 
+                                <NavLink  
+                                    exact
+                                    to='/posts' 
                                     activeClassName='the-active'
                                 >Home</NavLink>
                             </li>
@@ -34,9 +37,9 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route exact path='/posts' component={Posts} />
                 <Switch>
-                    <Route path='/new' component={NewPost}/>
+                    <Route exact path='/posts' component={Posts} />
+                    {this.state.isAuth && <Route path='/new' component={NewPost}/>}
                     <Route exact path='/posts/:postId' component={FullPost} />
                     <Redirect from='/' to='/posts'/>
                 </Switch>
