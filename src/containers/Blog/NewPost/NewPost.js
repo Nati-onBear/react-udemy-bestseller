@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './NewPost.css';
 import Axios from 'axios';
+import { Redirect } from 'react-router';
 
 class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Bear'
+        author: 'Bear',
+        sent: false
     }
 
     // componentDidMount() {
@@ -22,13 +24,18 @@ class NewPost extends Component {
         Axios.post('/posts/', postData)
             .then(res => {
                 console.log(res)
+                this.setState({ sent: true })
+            })
+            .then(() => {
+                alert('Create post successfully!')
             })
     }
 
     render () {
-        const { title, content, author } = this.state
+        const { title, content, author, sent } = this.state
         return (
             <div className="NewPost">
+                {sent && <Redirect to='/'/>}
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={title} onChange={(event) => this.setState({title: event.target.value})} />
