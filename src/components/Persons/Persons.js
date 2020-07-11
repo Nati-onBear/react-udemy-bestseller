@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Person from './Person/Person'
 
 const Persons = (props) => {
   const { persons, deletePersonHandler, changedNameHandler } = props
+
+  // useEffect(() => {
+  //   console.log('[Persons.js] useEffect')
+  //   // HTTP req...
+  //   setTimeout(() => {
+  //     alert('Saved data of Persons.js to cloud!')
+  //   }, 1000)
+  //   return () => {
+  //     console.log('[Persons.js] cleanup work in useEffect!')
+  //   }
+  // }, [])
+
   return (
     persons.map((person, index) => 
       <Person 

@@ -14,11 +14,12 @@ const initialState = [
 class App extends Component {
   state = {
     persons: Array.from(initialState),
-    showPersons: false
+    showPersons: false,
+    showCockpit: false
   }
 
   componentDidMount = () => {
-    this.setState({ showPersons: true })
+    this.setState({ showPersons: true, showCockpit: true })
   }
 
   deletePersonHandler = index => {
@@ -46,6 +47,12 @@ class App extends Component {
       : this.setState({ showPersons: true })
   }
 
+  toggleCockpit = () => {
+    this.state.showCockpit === true
+      ? this.setState({ showCockpit: false })
+      : this.setState({ showCockpit: true })
+  }
+
   resetState = () => {
     this.setState({
       persons: [...initialState],
@@ -60,14 +67,14 @@ class App extends Component {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
           </header>
-
-          <Cockpit 
+          <button onClick={this.toggleCockpit}>Toggle Cockpit</button>
+          {this.state.showCockpit && <Cockpit 
             title={this.props.appTitle}
             personsNumber={this.state.persons.length}
             showPersons={this.state.showPersons}
             toggleVisibility={this.toggleVisibility}
             resetState={this.resetState}
-          />
+          />}
           
           {
             this.state.showPersons && <Persons 
