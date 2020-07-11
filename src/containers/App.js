@@ -3,6 +3,8 @@ import logo from '../logo.svg';
 import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import Auxiliary from '../hoc/Auxiliary';
+import withClass from '../hoc/WithClass';
 
 const initialState = [
   { id: 'A1', name: 'Bear', age: 22, hobby: null },
@@ -61,7 +63,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Auxiliary>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
@@ -81,9 +83,9 @@ class App extends Component {
             changedNameHandler={this.changedNameHandler}
           />
         }
-      </div>
+      </Auxiliary>        
     );
   }
 }
 
-export default App;
+export default withClass(App, 'App');
