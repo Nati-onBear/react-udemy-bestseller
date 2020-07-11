@@ -32,7 +32,7 @@ class App extends Component {
     // To change the name of the person
     const originalPersons = [...this.state.persons]
     //let changedPerson = originalPersons.splice(index, 1).shift()
-    let changedPerson = originalPersons[index]
+    let changedPerson = { ...originalPersons[index] }
     changedPerson.name = event.target.value
     // To get the updated state
     let updatedPersons = [...this.state.persons]

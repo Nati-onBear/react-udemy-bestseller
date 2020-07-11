@@ -1,32 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { Component } from 'react'
 import Person from './Person/Person'
 
-const Persons = (props) => {
-  const { persons, deletePersonHandler, changedNameHandler } = props
+export default class Persons extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[Persons.js] shouldComponentUpdate')
+    if (nextProps.persons !== this.props.persons)
+      return true
+    return false
+  }
 
-  // useEffect(() => {
-  //   console.log('[Persons.js] useEffect')
-  //   // HTTP req...
-  //   setTimeout(() => {
-  //     alert('Saved data of Persons.js to cloud!')
-  //   }, 1000)
-  //   return () => {
-  //     console.log('[Persons.js] cleanup work in useEffect!')
-  //   }
-  // }, [])
-
-  return (
-    persons.map((person, index) => 
-      <Person 
-        key={person.id}
-        name={person.name}
-        age={person.age} 
-        hobby={person.hobby}
-        click={() => deletePersonHandler(index)}
-        changed={(event) => changedNameHandler(event, index)}
-      />
+  render() {
+    const { persons, deletePersonHandler, changedNameHandler } = this.props
+    console.log('[Persons.js] rendering')
+    return (
+      persons.map((person, index) => 
+        <Person 
+          key={person.id}
+          name={person.name}
+          age={person.age} 
+          hobby={person.hobby}
+          click={() => deletePersonHandler(index)}
+          changed={(event) => changedNameHandler(event, index)}
+        />
+      )
     )
-  )
+  }
 }
-
-export default Persons

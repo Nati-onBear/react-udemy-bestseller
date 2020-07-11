@@ -4,17 +4,17 @@ import './Cockpit.css'
 const Cockpit = (props) => {
   const { personsNumber, showPersons, toggleVisibility, resetState } = props
 
-  useEffect(() => {
-    console.log('[Cockpit.js] useEffect')
-    // HTTP req...
-    const timer = setTimeout(() => {
-      alert('Saved data of Cockpit.js to cloud!')
-    }, 2000)
-    return () => {
-      clearTimeout(timer)
-      console.log('[Cockpit.js] cleanup work in useEffect!')
-    }
-  }, [])
+  // useEffect(() => {
+  //   console.log('[Cockpit.js] useEffect')
+  //   // HTTP req...
+  //   const timer = setTimeout(() => {
+  //     alert('Saved data of Cockpit.js to cloud!')
+  //   }, 2000)
+  //   return () => {
+  //     clearTimeout(timer)
+  //     console.log('[Cockpit.js] cleanup work in useEffect!')
+  //   }
+  // }, [])
 
   const toggleClasses = ['basic-button']
   showPersons ? toggleClasses.push('basic-color') : toggleClasses.push('hiding-color')
