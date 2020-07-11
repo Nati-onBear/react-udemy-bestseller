@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Radium, { StyleRoot } from 'radium';
 import logo from '../logo.svg';
 import './App.css';
 import Persons from '../components/Persons/Persons';
@@ -62,31 +61,29 @@ class App extends Component {
 
   render() {
     return (
-      <StyleRoot>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-          </header>
-          <button onClick={this.toggleCockpit}>Toggle Cockpit</button>
-          {this.state.showCockpit && <Cockpit 
-            title={this.props.appTitle}
-            personsNumber={this.state.persons.length}
-            showPersons={this.state.showPersons}
-            toggleVisibility={this.toggleVisibility}
-            resetState={this.resetState}
-          />}
-          
-          {
-            this.state.showPersons && <Persons 
-              persons={this.state.persons} 
-              deletePersonHandler={this.deletePersonHandler}
-              changedNameHandler={this.changedNameHandler}
-            />
-          }
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        <button onClick={this.toggleCockpit}>Toggle Cockpit</button>
+        {this.state.showCockpit && <Cockpit 
+          title={this.props.appTitle}
+          personsNumber={this.state.persons.length}
+          showPersons={this.state.showPersons}
+          toggleVisibility={this.toggleVisibility}
+          resetState={this.resetState}
+        />}
+        
+        {
+          this.state.showPersons && <Persons 
+            persons={this.state.persons} 
+            deletePersonHandler={this.deletePersonHandler}
+            changedNameHandler={this.changedNameHandler}
+          />
+        }
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
