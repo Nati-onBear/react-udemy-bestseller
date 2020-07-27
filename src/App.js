@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './assets/logo.svg';
 import './App.css';
+import Counter from './containers/Counter/Counter';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <h1>Hello, I'm learning React again!</h1>
+      <Counter />
     </div>
   );
 }
