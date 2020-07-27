@@ -36,15 +36,14 @@ const rootReducer = (state = initialState, action) => {
 
 // Store
 const store = createStore(rootReducer)
-console.log(store.getState())
+
+// Subscription
+store.subscribe(() => {
+  console.log('[Subscription]', store.getState())
+})
 
 // Dispatching Action
 store.dispatch({type: 'INC'})
 store.dispatch({type: 'ADD', payload: {value: 10}})
 store.dispatch({type: 'DEC'})
-store.dispatch({type: 'SUB', payload: {value: 5}})
-console.log(store.getState())
-
-// Subscription
-
-
+store.dispatch({type: 'SUB', payload: {value: 3}})
