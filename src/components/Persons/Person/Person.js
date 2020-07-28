@@ -1,4 +1,6 @@
 import React, { memo } from 'react'
+import PropTypes from 'prop-types'
+
 import './Person.css'
 import withClass from '../../../hoc/WithClass'
 import Auxiliary from '../../../hoc/Auxiliary'
@@ -13,6 +15,14 @@ const person = (props) => {
       <input className='input-style' type='text' onChange={changed} value={name} style={{width:'50%',boxSizing:'border-box'}} />
     </Auxiliary>
   )
+}
+
+person.propTypes = {
+  click: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  changed: PropTypes.func.isRequired,
+  hobby: PropTypes.string
 }
 
 export default memo(withClass(person, 'Person'))
