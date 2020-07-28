@@ -9,9 +9,11 @@ import AuthContext from '../../../context/auth-context'
 const person = (props) => {
   const { name, age, hobby, click, changed } = props
   
+  // static contextType = AuthContext // only for class component
+
   return (
     <Auxiliary>
-      <AuthContext.Consumer>
+      <AuthContext.Consumer> {/* with contextType, remove Consumer and context, context.auth -> this.context.auth */}
         {context => 
           context.authenticated ? <p>Authenticated!</p> : <p>Plss Login!</p>
         }
