@@ -16,7 +16,8 @@ class App extends Component {
   state = {
     persons: Array.from(initialState),
     showPersons: false,
-    showCockpit: false
+    showCockpit: false,
+    changeCounter: 0
   }
 
   componentDidMount = () => {
@@ -39,7 +40,12 @@ class App extends Component {
     let updatedPersons = [...this.state.persons]
     //updatedPersons.splice(index, 1, changedPerson)
     updatedPersons[index] = changedPerson
-    this.setState({ persons: [...updatedPersons] })
+    this.setState((prevState, props) => {
+      return { 
+        persons: [...updatedPersons], 
+        changeCounter: prevState.changeCounter + 1 
+      }
+    })
   }
 
   toggleVisibility = () => {
