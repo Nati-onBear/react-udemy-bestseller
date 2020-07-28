@@ -12,7 +12,14 @@ const person = (props) => {
     <Auxiliary>
       <p onClick={click}>I'm {name}, I'm {age} years old!</p>
       <p>{hobby ? '& I\'m love ' : null } {hobby}</p>
-      <input className='input-style' type='text' onChange={changed} value={name} style={{width:'50%',boxSizing:'border-box'}} />
+      <input 
+        // ref={(inputEl) => {this.inputElement = inputEl.focus()}} // only for class component as required componentDidMount()
+        className='input-style' 
+        type='text' 
+        onChange={changed} 
+        value={name} 
+        style={{width:'50%',boxSizing:'border-box'}} 
+      />
     </Auxiliary>
   )
 }

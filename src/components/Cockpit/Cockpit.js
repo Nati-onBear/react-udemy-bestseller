@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Cockpit.css'
 
 const Cockpit = (props) => {
+  const toggleBtnRef = useRef(null)
+
   const { personsNumber, showPersons, toggleVisibility, resetState } = props
 
   useEffect(() => {
@@ -10,11 +12,12 @@ const Cockpit = (props) => {
     // const timer = setTimeout(() => {
     //   alert('Saved data of Cockpit.js to cloud!')
     // }, 2000)
+    toggleBtnRef.current.click()
     return () => {
       // clearTimeout(timer)
       console.log('[Cockpit.js] cleanup work in useEffect!')
     }
-  })
+  }, [])
 
   const toggleClasses = ['basic-button']
   showPersons ? toggleClasses.push('basic-color') : toggleClasses.push('hiding-color')
@@ -27,7 +30,7 @@ const Cockpit = (props) => {
     <div>
       <h1>{props.title}</h1>
       <p className={pClasses.join(' ')}>I hope this course will help me @@</p>
-      <button className={toggleClasses.join(' ')} onClick={toggleVisibility}>Toggle People's Visibility!</button>
+      <button ref={toggleBtnRef} className={toggleClasses.join(' ')} onClick={toggleVisibility}>Toggle People's Visibility!</button>
       <button className='basic-button basic-color' onClick={resetState}>Reset People</button>
     </div>
   )
