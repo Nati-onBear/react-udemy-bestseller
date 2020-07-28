@@ -1,21 +1,27 @@
 const intialState = {
-  counter: 2
+  counter: 2,
+  results: []
 }
 
 const reducer = (state = intialState, action) => {
   switch (action.type) {
     case 'INC':
-      return { counter: state.counter + 1 }
+      return { ...state, counter: state.counter + 1 }
     
     case 'DEC':
-      return { counter: state.counter - 1 }
+      return { ...state, counter: state.counter - 1 }
   
     case 'ADD':
-      return { counter: state.counter + action.value }
+      return { ...state, counter: state.counter + action.value }
 
     case 'SUB':
-      return { counter: state.counter - action.value }
+      return { ...state, counter: state.counter - action.value }
 
+    case 'STORE':
+      return { ...state, results: state.results.concat({ id: new Date(), value: state.counter }) }
+
+    case 'DELETE':
+      return { ...state, results: state.results.filter(res => res.id === action.id)}
     default:
       return state
   }
