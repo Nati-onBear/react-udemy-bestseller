@@ -5,6 +5,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Auxiliary from '../hoc/Auxiliary';
 import withClass from '../hoc/WithClass';
+import AuthContext from '../context/auth-context'
 
 const initialState = [
   { id: 'A1', name: 'Bear', age: 22, hobby: null },
@@ -17,7 +18,8 @@ class App extends Component {
     persons: Array.from(initialState),
     showPersons: false,
     showCockpit: false,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
   componentDidMount = () => {
@@ -67,6 +69,12 @@ class App extends Component {
     })
   }
 
+  loginHandler = () => {
+    this.setState({
+      authenticated: !this.state.authenticated
+    })
+  }
+
   render() {
     return (
       <Auxiliary>
@@ -74,21 +82,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <button onClick={this.toggleCockpit}>Toggle Cockpit</button>
-        {this.state.showCockpit && <Cockpit 
-          title={this.props.appTitle}
-          personsNumber={this.state.persons.length}
-          showPersons={this.state.showPersons}
-          toggleVisibility={this.toggleVisibility}
-          resetState={this.resetState}
-        />}
-        
-        {
-          this.state.showPersons && <Persons 
-            persons={this.state.persons} 
-            deletePersonHandler={this.deletePersonHandler}
-            changedNameHandler={this.changedNameHandler}
-          />
-        }
+        <AuthContext.Provider value={{authenticated: this.state.authenticated, login: this.loginHandler}}>
+          {
+            this.state.showCockpit && <Cockpit 
+              title={this.props.appTitle}
+              personsNumber={this.state.persons.length}
+              showPersons={this.state.showPersons}
+              toggleVisibility={this.toggleVisibility}
+              resetState={this.resetState}
+            />
+          }
+          
+          {
+            this.state.showPersons && <Persons 
+              persons={this.state.persons} 
+              deletePersonHandler={this.deletePersonHandler}
+              changedNameHandler={this.changedNameHandler}
+            />
+          }
+        </AuthContext.Provider>
       </Auxiliary>        
     );
   }

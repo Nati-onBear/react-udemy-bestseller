@@ -4,12 +4,18 @@ import PropTypes from 'prop-types'
 import './Person.css'
 import withClass from '../../../hoc/WithClass'
 import Auxiliary from '../../../hoc/Auxiliary'
+import AuthContext from '../../../context/auth-context'
 
 const person = (props) => {
   const { name, age, hobby, click, changed } = props
   
   return (
     <Auxiliary>
+      <AuthContext.Consumer>
+        {context => 
+          context.authenticated ? <p>Authenticated!</p> : <p>Plss Login!</p>
+        }
+      </AuthContext.Consumer>
       <p onClick={click}>I'm {name}, I'm {age} years old!</p>
       <p>{hobby ? '& I\'m love ' : null } {hobby}</p>
       <input 
@@ -21,6 +27,7 @@ const person = (props) => {
         style={{width:'50%',boxSizing:'border-box'}} 
       />
     </Auxiliary>
+    
   )
 }
 
