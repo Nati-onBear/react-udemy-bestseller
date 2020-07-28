@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import './index.css';
@@ -14,7 +14,18 @@ const rootReducer = combineReducers({
   res: resultsReducer
 })
 
-const store = createStore(rootReducer)
+const logger = store => {
+  return next => {
+    return dispatchedAction => {
+      console.log('[Middleware Logger] Dispatching:', dispatchedAction)
+      const result = next(dispatchedAction)
+      console.log('[Middleware Logger] Next state:', store.getState())
+      return result
+    }
+  }
+}
+
+const store = createStore(rootReducer, applyMiddleware(logger))
 
 ReactDOM.render(
   <React.StrictMode>
