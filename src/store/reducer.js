@@ -3,13 +3,22 @@ const intialState = {
 }
 
 const reducer = (state = intialState, action) => {
-  if (action.type === 'INC') {
-    return {
-      ...state,
-      counter: state.counter + 1
-    }
+  switch (action.type) {
+    case 'INC':
+      return { counter: state.counter + 1 }
+    
+    case 'DEC':
+      return { counter: state.counter - 1 }
+  
+    case 'ADD':
+      return { counter: state.counter + action.value }
+
+    case 'SUB':
+      return { counter: state.counter - action.value }
+
+    default:
+      return state
   }
-  return state
 }
 
 export default reducer
