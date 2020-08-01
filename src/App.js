@@ -2,13 +2,14 @@ import React from 'react';
 import logo from './assets/logo.svg';
 import './App.css';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <p>{props.title}</p>
       </header>
-      <h1>Hello, I'm learning React again!</h1>
+      
     </div>
   );
 }
