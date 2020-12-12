@@ -1,11 +1,13 @@
 import * as actionTypes from './actionTypes'
 
 export const storeResult = (result) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const oldCounter = getState().ctr.counter
+    console.log(oldCounter)
     setTimeout(() => {
-      dispatch({ 
-        type: actionTypes.STORE_RESULT, 
-        result 
+      dispatch({
+        type: actionTypes.STORE_RESULT,
+        result
       })
     }, 2000)
   }
